@@ -1,20 +1,44 @@
+import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import java.io.IOException;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        CharStream charStream = CharStreams.fromFileName("./project_deliverable_1_testcase.py");
+        Path path = Paths.get("./project_deliverable_1_testcase.py");
+        CharStream charStream = CharStreams.fromPath(path);
         PythonParserLexer pythonLexer = new PythonParserLexer(charStream);
         CommonTokenStream commonTokenStream = new CommonTokenStream(pythonLexer);
         PythonParserParser pythonParser = new PythonParserParser(commonTokenStream);
 
-        ParseTree parseTree = pythonParser.expr();
-        System.out.println(parseTree.toStringTree());
+        ParseTree parseTree = pythonParser.prog();
 
+        showTree(parseTree);
     }
+
+    private static void showTree(ParseTree tree) {
+        JFrame frame = new JFrame("Parse Tree");
+        JPanel panel = new JPanel(new BorderLayout());
+
+        TreeViewer treeViewer = new TreeViewer(null, tree);
+        treeViewer.setScale(1.5);
+
+        JScrollPane scrollPane = new JScrollPane(treeViewer);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        frame.getContentPane().add(panel);
+        frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
+
 }

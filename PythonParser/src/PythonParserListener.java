@@ -17,6 +17,16 @@ public interface PythonParserListener extends ParseTreeListener {
 	 */
 	void exitProg(PythonParserParser.ProgContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PythonParserParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatement(PythonParserParser.StatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PythonParserParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatement(PythonParserParser.StatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PythonParserParser#expr}.
 	 * @param ctx the parse tree
 	 */
