@@ -13,13 +13,13 @@ import java.nio.file.Paths;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Path path = Paths.get("./project_deliverable_1_testcase.py");
+        Path path = Paths.get("./project_deliverable_2_testcase.py");
         CharStream charStream = CharStreams.fromPath(path);
         PythonParserLexer pythonLexer = new PythonParserLexer(charStream);
         CommonTokenStream commonTokenStream = new CommonTokenStream(pythonLexer);
         PythonParserParser pythonParser = new PythonParserParser(commonTokenStream);
 
-        ParseTree parseTree = pythonParser.prog();
+        ParseTree parseTree = pythonParser.program();
 
         showTree(parseTree);
     }
