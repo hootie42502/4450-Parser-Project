@@ -18,7 +18,7 @@ NEWLINE: '\r'? '\n' -> skip;
 // Define parser rules
 program: statement+ EOF;
 
-statement: assignment | arithmetic_operation | array_declaration | variable_declaration | if_statement;
+statement: assignment | arithmetic_operation | array_declaration | variable_declaration | if_statement | while_statement | for_statement;
 
 assignment: ID assignment_operator (STRING | FLOAT | INT | CHAR | ID);
 
@@ -41,6 +41,11 @@ variable_declaration: ID '=' expression;
 
 if_statement: 'if' expression ':' statement+ ('elif' expression ':' statement+ )* ('else' ':' statement+ )?;
 
+while_statement: 'while' expression ':' statement+ ;
+
+for_statement: 'for' ID 'in' (ID | range_operator) ':' statement+ ;
+range_operator: 'range('  INT  ','  INT  ')' ;
+
 // Define relational operators
 relational_operator: '<' | '>' | '<=' | '>=' | '==' | '!=';
 assignment_operator: '+=' | '=' | '-=' | '/=' | '*=' | '%=' | '**=' | '//=' | '|=' | '^=' | '&=' ;
@@ -48,3 +53,4 @@ assignment_operator: '+=' | '=' | '-=' | '/=' | '*=' | '%=' | '**=' | '//=' | '|
 // Ignore whitespaces and comments
 WS: [ \t]+ -> skip;
 COMMENT: '#' ~[\r\n]* -> skip;
+MULTILINE_COMMENT: '\'' '\'' '\'' .*? '\'' '\'' '\'' -> skip;

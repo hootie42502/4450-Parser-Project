@@ -157,6 +157,36 @@ public interface PythonParserListener extends ParseTreeListener {
 	 */
 	void exitIf_statement(PythonParserParser.If_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link PythonParserParser#while_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhile_statement(PythonParserParser.While_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PythonParserParser#while_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhile_statement(PythonParserParser.While_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PythonParserParser#for_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor_statement(PythonParserParser.For_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PythonParserParser#for_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor_statement(PythonParserParser.For_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PythonParserParser#range_operator}.
+	 * @param ctx the parse tree
+	 */
+	void enterRange_operator(PythonParserParser.Range_operatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PythonParserParser#range_operator}.
+	 * @param ctx the parse tree
+	 */
+	void exitRange_operator(PythonParserParser.Range_operatorContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link PythonParserParser#relational_operator}.
 	 * @param ctx the parse tree
 	 */
